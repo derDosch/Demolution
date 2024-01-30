@@ -1,0 +1,27 @@
+
+sourceCompatibility = 1.8
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+sourceSets.main.java.srcDirs = [ "src/" ]
+
+eclipse.project.name = appName + "-core"
+
+dependencies {
+    implementation "com.badlogicgames.gdx-controllers:gdx-controllers-core:$gdxControllersVersion"
+}
+/*
+dependencies {
+    implementation "com.badlogicgames.gdx-controllers:gdx-controllers-core:2.2.3"
+    implementation "com.badlogicgames.gdx-controllers:gdx-controllers-desktop:2.2.3"
+    implementation "com.badlogicgames.gdx-controllers:gdx-controllers-android:2.2.3"
+    implementation "com.badlogicgames.gdx-controllers:gdx-controllers-ios:2.2.3"
+    implementation "com.badlogicgames.gdx-controllers:gdx-controllers-core:2.2.3:sources"
+    implementation "com.badlogicgames.gdx-controllers:gdx-controllers-gwt:2.2.3:sources"
+
+    // Andere Abhängigkeiten...
+    implementation "com.badlogicgames.gdx:gdx:1.12.1"
+    implementation "com.badlogicgames.gdx:gdx-backend-gwt:1.12.1"
+
+}
+
+ */
