@@ -109,6 +109,10 @@ public class Player extends Sprite {
     }
 
 
+    public Vector2 getMovement(){
+        return movement;
+    }
+
     private void checkNPCCollisions() {
         for (NPC npc : npcList) {
             if (getBoundingBox().overlaps(npc.getBoundingBox())) {

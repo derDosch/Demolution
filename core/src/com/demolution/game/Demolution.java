@@ -10,7 +10,7 @@ public class Demolution extends Game {
 	@Override
 	public void create () {
 
-		setScreen(new Town());
+		setScreen(new Town(this));
 	}
 
 

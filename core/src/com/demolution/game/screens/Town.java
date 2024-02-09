@@ -1,8 +1,10 @@
 package com.demolution.game.screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -38,6 +40,7 @@ import java.util.Map;
 
 public class Town extends ScreenAdapter {
 
+    private Game game;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
@@ -54,6 +57,13 @@ public class Town extends ScreenAdapter {
 
     private Array<Creature> creatures;
 
+    private Music backgroundMusic;
+
+
+
+    public Town(Game game){
+        this.game = game;
+    }
 
     BitmapFont font = new BitmapFont();
 
@@ -61,6 +71,7 @@ public class Town extends ScreenAdapter {
     public Player getPlayer() {
         return player;
     }
+
 
     @Override
     public void render(float delta) {
@@ -172,7 +183,8 @@ public class Town extends ScreenAdapter {
                 "Once I was an adventurer like you, but then I took an arrow in my knee.",
                 null,
                 "",
-                new Array<>()));
+                new Array<>(),
+                game));
 
         npcArray.get(0).setDestinations(Array.with(
                 new Vector2(map.getProperties().get("width", Integer.class) * map.getProperties().get("tilewidth", Integer.class) / 2 + 100,
@@ -197,7 +209,8 @@ public class Town extends ScreenAdapter {
                 "You have your Deamon, now go on your Adventure!",
                 new GiveCreatureInteraction(ListOfCreatures.creatures.get(0)),
                 "You can't travel without a Daemon, here take this one. I'm sure you will take good care of him.",
-                new Array<>()));
+                new Array<>(),
+                game));
 
         Array<Creature> AntagonistcreatureList = new Array<>();
         AntagonistcreatureList.add(ListOfCreatures.creatures.get(0));
@@ -213,7 +226,8 @@ public class Town extends ScreenAdapter {
                 "I will be your DOOM!",
                 null,
                 "",
-                AntagonistcreatureList));
+                AntagonistcreatureList,
+                game));
 
         for (int i = 0; i < npcArray.size; i++) {
             NPC npc = npcArray.get(i);
@@ -250,6 +264,12 @@ public class Town extends ScreenAdapter {
 
         // Fügen Sie den Button zur Stage hinzu
         stage.addActor(button);
+
+        // Initialisiere die Hintergrundmusik
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("sound/background_music/Background_Instrumental.mp3"));
+        backgroundMusic.setLooping(true); // Setze die Musik auf Dauerloop
+        backgroundMusic.setVolume(0.02f);
+        backgroundMusic.play();
     }
 
     private void handleInteractions() {
@@ -301,22 +321,13 @@ public class Town extends ScreenAdapter {
     @Override
     public void hide() {
         // Speichere die Spielerposition, wenn das Spiel verborgen wird
+        if (backgroundMusic != null) {
+            backgroundMusic.stop();
+            backgroundMusic.dispose();
+        }
         savePreferneces();
     }
 
-    @Override
-    public void dispose() {
-        map.dispose();
-        renderer.dispose();
-        player.getTexture().dispose();
-        player.dispose();
-        for (NPC npc : npcArray) {
-            npc.dispose();
-        }
-        font = null;
-        // Speichere die Spielerposition, wenn das Spiel geschlossen wird
-        savePreferneces();
-    }
 
     private void savePreferneces() {
         Preferences preferences = Gdx.app.getPreferences("player_preferences");
@@ -433,6 +444,27 @@ public class Town extends ScreenAdapter {
         }
     }
 
+    @Override
+    public void dispose() {
+        map.dispose();
+        renderer.dispose();
+        player.getTexture().dispose();
+        player.dispose();
+        hide();
+        for (NPC npc : npcArray) {
+            npc.dispose();
+        }
+
+        // Stoppe und release die Hintergrundmusik
+        if (backgroundMusic != null) {
+            backgroundMusic.stop();
+            backgroundMusic.dispose();
+        }
+
+        font = null;
+        // Speichere die Spielerposition, wenn das Spiel geschlossen wird
+        savePreferneces();
+    }
 
 
 }

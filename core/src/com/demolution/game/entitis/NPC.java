@@ -1,5 +1,6 @@
 package com.demolution.game.entitis;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.demolution.game.entitis.interactions.NPCInteraction;
+import com.demolution.game.screens.BattleScreen;
 
 public class NPC {
 
@@ -55,9 +57,12 @@ public class NPC {
     private boolean hasOneTimeInteraction;
     private NPCInteraction specialInteraction;
 
+    private Game game;
+    private boolean battleScreenActive;
 
 
-    public NPC(float x, float y, float speed, String npcSheetPath, Player player, boolean isTrader, boolean isDeamonUser, boolean hasOneTimeInteraction, BitmapFont font, String message, NPCInteraction specialInteraction, String SpecialMessage,Array<Creature> NPCcreatures) {
+
+    public NPC(float x, float y, float speed, String npcSheetPath, Player player, boolean isTrader, boolean isDeamonUser, boolean hasOneTimeInteraction, BitmapFont font, String message, NPCInteraction specialInteraction, String SpecialMessage,Array<Creature> NPCcreatures, Game game) {
         this.position = new Vector2(x, y);
         this.velocity = new Vector2();
         this.speed = speed;
@@ -70,6 +75,9 @@ public class NPC {
         this.specialInteraction = specialInteraction;
         this.SpecialMessage = SpecialMessage;
         this.NPCcreatures = NPCcreatures;
+        this.game = game;
+
+        this.battleScreenActive = false;
 
         previousDestination = new Vector2(); // Initialisiere die vorherige Destination
 
@@ -132,11 +140,21 @@ public class NPC {
 
             // Der gesamte Text wurde angezeigt
             if (isDeamonUser) {
+                player.getMovement().setZero();
+
+                initiateBattle();
+
                 // Spezifische Logik für Daemon-User
             } else if (isTrader) {
                 // Spezifische Logik für Trader
             }
         }
+    }
+
+    private void initiateBattle() {
+        // Wechsel zum BattleScreen
+        game.setScreen(new BattleScreen(game, this, player));
+        battleScreenActive = true;
     }
 
     // Methode zum Abfragen des hasOneTimeInteraction-Status
