@@ -132,6 +132,7 @@ public class Creature {
 
     public void loadFromPreferences(Preferences preferences, String prefix) {
         this.name = preferences.getString(prefix + "_name", "DefaultName");
+        this.spriteSheetPath = preferences.getString(prefix + "_spriteSheetPath");
         this.tamed = preferences.getBoolean(prefix + "_tamed", false);
         this.maxHealth = preferences.getInteger(prefix + "_maxHealth", 0);
         this.currentHealth = preferences.getInteger(prefix + "_currentHealth", 0);
@@ -173,6 +174,7 @@ public class Creature {
 
     public void saveToPreferences(Preferences preferences, String prefix) {
         preferences.putString(prefix + "_name", this.name);
+        preferences.putString(prefix + "_spriteSheetPath", this.spriteSheetPath);
         preferences.putBoolean(prefix + "_tamed", this.tamed);
         preferences.putInteger(prefix + "_maxHealth", this.maxHealth);
         preferences.putInteger(prefix + "_currentHealth", this.currentHealth);

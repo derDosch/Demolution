@@ -316,6 +316,10 @@ public class NPC {
         return position.cpy(); // Verwende .cpy(), um eine Kopie der Position zurückzugeben und unerwartetes Verhalten zu vermeiden
     }
 
+    public Array<Creature> getNPCcreatures(){
+        return NPCcreatures;
+    }
+
     private void updateAnimation() {
         // Wenn die Geschwindigkeit null ist, zeige das Standbild der letzten Richtung
         if (velocity.len2() == 0) {

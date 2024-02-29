@@ -1,6 +1,7 @@
 package com.demolution.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.demolution.game.screens.Town;
 
 
@@ -9,7 +10,6 @@ public class Demolution extends Game {
 	
 	@Override
 	public void create () {
-
 		setScreen(new Town(this));
 	}
 

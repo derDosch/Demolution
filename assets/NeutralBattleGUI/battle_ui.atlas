@@ -1,0 +1,104 @@
+
+battle_ui.png
+size: 176, 419
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+BallEmpty
+  rotate: false
+  xy: 14, 15
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+BallFainted
+  rotate: false
+  xy: 0, 1
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+BallNormal
+  rotate: false
+  xy: 44, 95
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+BallStatus
+  rotate: false
+  xy: 44, 81
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+BattleEnemyBoxD
+  rotate: false
+  xy: 0, 109
+  size: 176, 46
+  orig: 176, 46
+  offset: 0, 0
+  index: -1
+BattleEnemyBoxS
+  rotate: false
+  xy: 0, 201
+  size: 176, 62
+  orig: 176, 62
+  offset: 0, 0
+  index: -1
+BattleOwned
+  rotate: false
+  xy: 0, 15
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+BattlePlayerBoxD
+  rotate: false
+  xy: 0, 155
+  size: 176, 46
+  orig: 176, 46
+  offset: 0, 0
+  index: -1
+BattlePlayerBoxS
+  rotate: false
+  xy: 0, 263
+  size: 176, 78
+  orig: 176, 78
+  offset: 0, 0
+  index: -1
+BattlePlayerSafari
+  rotate: false
+  xy: 0, 341
+  size: 176, 78
+  orig: 176, 78
+  offset: 0, 0
+  index: -1
+BattleStatuses
+  rotate: false
+  xy: 0, 29
+  size: 44, 80
+  orig: 44, 80
+  offset: 0, 0
+  index: -1
+green
+  rotate: false
+  xy: 0, 0
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+red
+  rotate: false
+  xy: 14, 14
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+yellow
+  rotate: false
+  xy: 58, 108
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
